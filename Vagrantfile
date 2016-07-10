@@ -30,22 +30,21 @@ Vagrant.configure(2) do |config|
   config.vm.provision :chef_solo do |chef|
 
     # Check chef cookbook directory
-    chef.cookbooks_path = "./cookbooks"
+    chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
 
     # Define attribute
-    chef.json = {
-      nginx: {
-        env: "ruby"
-      },
-      mysql: {
-        server_root_password: 'rootpass'
-      }
-    }
+    # chef.json = {
+    #   nginx: {
+    #     env: "ruby"
+    #   },
+    #   mysql: {
+    #     server_root_password: 'rootpass'
+    #   }
+    # }
 
     # Apply cookbook
     chef.run_list = %w[
-      recipe[yum-epel]
-      recipe[yum-vim]
+      recipe[env-ruby]
     ]
   end
 
@@ -62,8 +61,8 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   sudo apt-get update
-  #   sudo apt-get install -y apache2
-  # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo -y update
+    # sudo apt-get install -y apache2
+  SHELL
 end
