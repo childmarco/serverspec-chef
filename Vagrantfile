@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
   # information on available options.
 
   # Update Chef utilities
-  config.omnibus.chf_version = :latest
+  config.omnibus.chef_version = :latest
   
   # Call chef cookbook to install SW
   config.vm.provision :chef_solo do |chef|
@@ -44,7 +44,7 @@ Vagrant.configure(2) do |config|
 
     # Apply cookbook
     chef.run_list = %w[
-      recipe[env-ruby]
+      recipe[ruby-env]
     ]
   end
 
