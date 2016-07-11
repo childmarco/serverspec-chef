@@ -86,4 +86,5 @@ LoadError: cannot load such file -- rspec/core/rake_task
 [root@vagrant-centos65 serverspec]#
 [root@vagrant-centos65 serverspec]# gem which rake
 /usr/local/src/rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/rake-10.4.2/lib/rake.rb
-[root@vagrant-centos65 serverspec]#
+[root@vagrant-centos65 serverspec]#ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-linux]
+Bundler version 1.12.5
