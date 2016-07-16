@@ -31,6 +31,13 @@ Vagrant.configure(2) do |config|
 
     # Check chef cookbook directory
     chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
+    # chef.log_level = :debug
+
+
+
+
+
+
 
     # Define attribute
     # chef.json = {
@@ -43,9 +50,15 @@ Vagrant.configure(2) do |config|
     # }
 
     # Apply cookbook
-    chef.run_list = %w[
-      recipe[ruby-env]
+    chef.run_list = [
+     "ruby-env",
+      # vim
     ]
+
+
+
+
+
   end
 
 
@@ -62,7 +75,7 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    sudo -y update
+    # sudo yum -y update
     # sudo apt-get install -y apache2
   SHELL
 end
