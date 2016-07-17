@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "serverspec"
+  config.vm.box     = "serverspec"
   config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box"
   config.vm.hostname="infra-testing"
 
@@ -13,10 +13,10 @@ Vagrant.configure(2) do |config|
   config.vbguest.auto_update = false
 
   config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
+    #   # Display the VirtualBox GUI when booting the machine
+    #   vb.gui = true
+    #
+    #   # Customize the amount of memory on the VM:
     vb.memory = "1024"
   end
   #
@@ -25,19 +25,13 @@ Vagrant.configure(2) do |config|
 
   # Update Chef utilities
   config.omnibus.chef_version = :latest
-  
+
   # Call chef cookbook to install SW
   config.vm.provision :chef_solo do |chef|
 
     # Check chef cookbook directory
     chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
     # chef.log_level = :debug
-
-
-
-
-
-
 
     # Define attribute
     # chef.json = {
@@ -51,17 +45,11 @@ Vagrant.configure(2) do |config|
 
     # Apply cookbook
     chef.run_list = [
-     "ruby-env",
-      # vim
+      "ruby-env"
     ]
 
 
-
-
-
   end
-
-
 
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies

@@ -15,5 +15,7 @@ fi
 
 # User specific environment and startup programs
 PATH=$PATH:$HOME/bin
-export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="$HOME/.rbenv/versions/#{@versions}/$HOME/.rbenv/bin:$PATH"
+export PATH=$HOME/.rbenv/versions/<%= @version %>/bin:/$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"

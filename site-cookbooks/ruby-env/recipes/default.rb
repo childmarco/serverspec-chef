@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-%w{gcc git openssl-devel sqlite-devel gcc-c++ openssl-devel readline-devel zlib-devel libcurl-devel libffi-devel readline}.each do |pkg|
+node['ruby-env']['yum-pkg'].each do |pkg|
   package pkg do
     action :install
   end
@@ -20,12 +20,15 @@ git "/home/#{node['ruby-env']['user']}/.rbenv" do
 end
 
 template ".bash_profile" do
-  source ".bash_profile.erb"
+  source ".bash_profile.rb"
   path "/home/#{node['ruby-env']['user']}/.bash_profile"
   mode 0644
   owner node['ruby-env']['user']
   group node['ruby-env']['group']
   not_if "grep rbenv ~/.bash_profile", :environment => {:'HOME' => "/home/#{node['ruby-env']['user']}"}
+  variables({
+              :version => node["ruby-env"]["version"]
+            })
 end
 
 directory "/home/#{node['ruby-env']['user']}/.rbenv/plugins" do
